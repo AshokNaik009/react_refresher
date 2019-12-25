@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import GoalList from './components/GoalList/GoalList';
 import NewGoal from './components/NewGoal/NewGoal';
@@ -6,16 +6,19 @@ import NewGoal from './components/NewGoal/NewGoal';
 
 function App() {
 
-   var courseGoals = [
-     { id:'cg1' , text:'Finish the Course' },
-     { id:'cg2' , text:'Do Some Sample Projects' },
-     { id:'cg3' , text:'Start writing about React' },
-  ];
+    const [courseGoals,setCourseGoals] = useState( [
+      { id:'cg1' , text:'Finish the Course' },
+      { id:'cg2' , text:'Do Some Sample Projects' },
+      { id:'cg3' , text:'Start writing about React' },
+   ])
+   
+
 
    const addNewGoalHandler = (newgoal) =>{
-    courseGoals.push(newgoal);
-     console.log(courseGoals);
-   }
+      //  setCourseGoals(courseGoals.concat(newgoal));
+      //Method to be used when state update rely on already existing values 
+      setCourseGoals(prevCourseGoals => prevCourseGoals.concat(newgoal));
+    }
 
 
   return (
